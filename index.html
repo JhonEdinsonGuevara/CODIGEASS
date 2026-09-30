@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codigeass - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="contenedor-app">
+        
+        <!-- Barra Lateral Izquierda -->
+        <aside class="barra-lateral">
+            <div class="contenedor-logo">
+                <h1 class="logo">CODIGEASS</h1>
+            </div>
+            <nav class="menu">
+                <a href="#" class="item-menu activo">Inicio</a>
+                <a href="#" class="item-menu">Rutas</a>
+                <a href="#" class="item-menu">Ligas</a>
+                <a href="#" class="item-menu">Desafíos</a>
+                <a href="#" class="item-menu">Tienda</a>
+                <a href="#" class="item-menu">Perfil</a>
+            </nav>
+        </aside>
+
+        <!-- Contenedor Central -->
+        <main class="contenido-principal">
+            
+            <!-- Barra Superior (Estado del Jugador) -->
+            <header class="barra-superior">
+                <div class="info-curso">Curso Activo: Python Avanzado</div>
+                <div class="estadisticas-usuario">
+                    <span class="estadistica racha">🔥 Racha: 7 Días</span>
+                    <span class="estadistica experiencia">✨ 1,450 XP | ❤️ 5/5</span>
+                </div>
+            </header>
+
+            <!-- Área de Trabajo (Ruta y Paneles) -->
+            <div class="area-trabajo">
+                
+                <!-- Centro: Árbol de Habilidades -->
+                <section class="panel-arbol-habilidades">
+                    <h2 class="titulo-seccion">RUTA DE APRENDIZAJE: PYTHON</h2>
+                    
+                    <!-- Ejemplo de un Nodo del Árbol -->
+                    <div class="contenedor-nodo">
+                        <div class="nodo completado">
+                            <span class="icono">✓</span>
+                        </div>
+                        <p class="etiqueta-nodo">1. Sintaxis</p>
+                    </div>
+                </section>
+
+                <!-- Derecha: Misiones y Ligas -->
+                <aside class="panel-derecho">
+                    
+                    <!-- Tarjeta Misiones -->
+                    <div class="tarjeta">
+                        <h3 class="titulo-tarjeta texto-naranja">Misiones Diarias</h3>
+                        <div class="caja-mision">
+                            <p class="texto-mision">Completa 2 Lecciones</p>
+                            <div class="fondo-barra-progreso">
+                                <div class="relleno-barra-progreso"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta Ligas -->
+                    <div class="tarjeta">
+                        <h3 class="titulo-tarjeta texto-cian">Liga Plata - Top 3</h3>
+                        <div class="caja-liga usuario-activo">
+                            <span class="nombre-jugador">2. TÚ (Codigeass)</span>
+                            <span class="xp-jugador">1,450 XP</span>
+                        </div>
+                    </div>
+
+                </aside>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

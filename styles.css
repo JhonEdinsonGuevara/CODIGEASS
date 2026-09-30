@@ -1,0 +1,217 @@
+    :root {
+        --bg-main: #0f172a;
+        --bg-panel: #1e293b;
+        --border-color: #334155;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --primary-green: #10b981;
+        --primary-green-hover: #059669;
+        --accent-orange: #fb923c;
+        --accent-cyan: #22d3ee;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background-color: var(--bg-main);
+        color: var(--text-main);
+        height: 100vh;
+        overflow: hidden; /* Evita el scroll general
+    }
+
+    /* Contenedor principal usando Flexbox */
+    .contenedor-app {
+        display: flex; 
+        height: 100vh;
+    }
+
+    /* --- BARRA LATERAL--- */
+    .barra-lateral {
+        width: 250px;
+        background-color: var(--bg-panel);
+        border-right: 1px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .contenedor-logo {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .logo {
+        color: var(--primary-green);
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .item-menu {
+        text-decoration: none;
+        color: var(--text-muted);
+        padding: 12px 15px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .item-menu:hover {
+        color: var(--text-main);
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .item-menu.activo {
+        background-color: var(--primary-green);
+        color: white;
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    }
+
+    /* --- CONTENIDO PRINCIPAL --- */
+    .contenido-principal {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    /*(Barra Superior) */
+    .barra-superior {
+        background-color: var(--bg-panel);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        padding: 15px 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .estadisticas-usuario {
+        display: flex;
+        gap: 20px;
+        font-weight: bold;
+    }
+
+    .racha { color: var(--accent-orange); }
+    .experiencia { color: #c084fc; } /* Tono púrpura para XP y Vidas */
+
+    /* Área de Trabajo Central */
+    .area-trabajo {
+        display: flex;
+        flex: 1;
+        gap: 20px;
+        overflow: hidden;
+    }
+
+    /* Panel Central (Árbol de Habilidades) */
+    .panel-arbol-habilidades {
+        flex: 1;
+        background-color: var(--bg-panel);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .titulo-seccion {
+        color: var(--accent-cyan);
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        letter-spacing: 1px;
+    }
+
+    .contenedor-nodo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .nodo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 4px solid var(--border-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+    }
+
+    .nodo.completado {
+        border-color: var(--primary-green);
+        color: var(--primary-green);
+    }
+
+    /* Panel Derecho (Misiones y Ligas) */
+    .panel-derecho {
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .tarjeta {
+        background-color: var(--bg-panel);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .titulo-tarjeta {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+    }
+
+    .texto-naranja { color: var(--accent-orange); }
+    .texto-cian { color: var(--accent-cyan); }
+
+    .caja-mision {
+        background-color: #1a2234;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: left;
+    }
+
+    .texto-mision {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    .fondo-barra-progreso {
+        background-color: var(--border-color);
+        height: 10px;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    .relleno-barra-progreso {
+        background-color: var(--primary-green);
+        height: 100%;
+        width: 50%; /* Representa el progreso */
+        border-radius: 5px;
+    }
+
+    .caja-liga.usuario-activo {
+        display: flex;
+        justify-content: space-between;
+        background-color: var(--primary-green);
+        color: white;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }

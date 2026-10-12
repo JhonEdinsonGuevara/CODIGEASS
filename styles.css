@@ -215,3 +215,134 @@
         font-weight: bold;
         font-size: 1.0rem;
     }
+
+    /* --- ESTILOS PARA EL ÁRBOL DE HABILIDADES --- */
+
+.arbol-habilidades {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+    overflow-y: auto; /* Permite desplazamiento si la ruta crece */
+    padding: 10px;
+}
+
+/* Fila para colocar nodos en paralelo (Condicionales y Bucles) */
+.fila-rama {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    width: 100%;
+}
+
+.etiqueta-nodo {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Estilo para nodos pendientes o bloqueados */
+.nodo.pendiente {
+    border-color: var(--border-color);
+    background-color: rgba(30, 41, 59, 0.5);
+    color: var(--text-muted);
+} 
+
+/* --- ESTILOS PARA LA SECCIÓN DE RUTAS (CUADRÍCULA Y HOVER) --- */
+
+/* 1. Contenedor de la cuadrícula 3x2 */
+.cuadricula-rutas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Crea exactamente 3 columnas del mismo tamaño */
+    gap: 30px; /* Espacio de separación entre las tarjetas */
+    width: 100%;
+    padding: 10px;
+}
+
+/* 2. Tarjeta individual principal */
+.tarjeta-ruta {
+    background-color: var(--bg-panel);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    height: 240px; /* Altura fija para que el efecto visual funcione perfecto */
+    position: relative; /* Clave para posicionar la capa oculta adentro */
+    overflow: hidden; /* Oculta todo lo que se salga de los bordes de la tarjeta */
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+/* Resalta el borde de verde al pasar el mouse */
+.tarjeta-ruta:hover {
+    border-color: var(--primary-green);
+}
+
+/* 3. Capa frontal (Logo y Título que se ven siempre) */
+.contenido-frontal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.icono-lenguaje {
+    font-size: 4.5rem; /* Tamaño grande para el emoji o logo */
+    margin-bottom: 15px;
+}
+
+.titulo-ruta {
+    color: var(--text-main);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* 4. Capa de Detalles (Efecto Hover de la Opción B) */
+.detalles-hover {
+    position: absolute; /* Se superpone encima de la capa frontal */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30, 41, 59, 0.95); /* Fondo azul oscuro casi sólido */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    
+    /* Empuja esta capa hacia abajo, fuera de la vista de la tarjeta */
+    transform: translateY(100%); 
+    transition: transform 0.3s ease; /* Animación suave al moverse */
+}
+
+/* LA MAGIA: Cuando pasas el mouse (:hover) por la tarjeta, la capa oculta sube */
+.tarjeta-ruta:hover .detalles-hover {
+    transform: translateY(0); /* Regresa a la posición 0 (visible) */
+}
+
+.descripcion-ruta {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+/* Botón de la tarjeta */
+.btn-iniciar {
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-iniciar:hover {
+    background-color: var(--primary-green-hover);
+}

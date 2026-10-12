@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codigeass - Dashboard</title>
+    <title>Codigeass - Inicio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
             </div>
             <nav class="menu">
                 <a href="#" class="item-menu activo">Inicio</a>
-                <a href="#" class="item-menu">Rutas</a>
+                <a href="rutas.html" class="item-menu">Rutas</a>
                 <a href="#" class="item-menu">Ligas</a>
                 <a href="#" class="item-menu">Desafíos</a>
                 <a href="#" class="item-menu">Tienda</a>
@@ -40,9 +40,52 @@
             <div class="area-trabajo">
                 
                 <!-- Centro: Árbol de Habilidades -->
-                <section class="panel-arbol-habilidades">
-                    <h2 class="titulo-seccion">RUTA DE APRENDIZAJE: PYTHON</h2>
-                    
+                <!-- Centro: Árbol de Habilidades -->
+<section class="panel-arbol-habilidades">
+    <h2 class="titulo-seccion">RUTA DE APRENDIZAJE: PYTHON</h2>
+    
+    <div class="arbol-habilidades">
+        <!-- Nodo 1: Sintaxis -->
+        <div class="contenedor-nodo">
+            <div class="nodo completado">
+                <span class="icono">✓</span>
+            </div>
+            <p class="etiqueta-nodo">1. Sintaxis</p>
+        </div>
+
+        <!-- Fila ramificada: Condicionales y Bucles FOR -->
+        <div class="fila-rama">
+            <div class="contenedor-nodo">
+                <div class="nodo completado">
+                    <span class="icono">✓</span>
+                </div>
+                <p class="etiqueta-nodo">2. Condicionales</p>
+            </div>
+            <div class="contenedor-nodo">
+                <div class="nodo completado">
+                    <span class="icono">✓</span>
+                </div>
+                <p class="etiqueta-nodo">3. Bucles FOR</p>
+            </div>
+        </div>
+
+        <!-- Nodo 4: Funciones -->
+        <div class="contenedor-nodo">
+            <div class="nodo pendiente">
+                <span class="icono"></span>
+            </div>
+            <p class="etiqueta-nodo">4. Funciones</p>
+        </div>
+
+        <!-- Nodo 5: POO y Clases -->
+        <div class="contenedor-nodo">
+            <div class="nodo pendiente">
+                <span class="icono"></span>
+            </div>
+            <p class="etiqueta-nodo">5. POO y Clases</p>
+        </div>
+    </div>
+</section>
                     <!-- Ejemplo de un Nodo del Árbol -->
                     <div class="contenedor-nodo">
                         <div class="nodo completado">
@@ -79,5 +122,6 @@
             </div>
         </main>
     </div>
+    
 </body>
 </html>

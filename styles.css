@@ -346,3 +346,157 @@
 .btn-iniciar:hover {
     background-color: var(--primary-green-hover);
 }
+/* --- ESTILOS PARA LA SECCIÓN DE LIGAS --- */
+
+/* Panel principal de clasificación */
+.panel-clasificacion {
+    flex: 1;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+/* Banner de la liga */
+.banner-liga {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 20px;
+    background-color: #1a2234;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+.icono-liga {
+    font-size: 3rem;
+}
+
+.info-liga h2 {
+    color: var(--text-main);
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+}
+
+.info-liga p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Lista de posiciones */
+.tabla-posiciones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fila-jugador {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: #161f32;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.fila-jugador:hover {
+    transform: translateX(4px);
+    border-color: var(--accent-cyan);
+}
+
+.posicion {
+    width: 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--text-muted);
+}
+
+.avatar {
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+
+.nombre {
+    flex: 1;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.xp {
+    font-weight: bold;
+    color: var(--accent-cyan);
+}
+
+/* Destacados del Top 3 y Usuario Activo */
+.fila-jugador.top-3.oro {
+    border-color: #f59e0b;
+    background-color: rgba(245, 158, 11, 0.1);
+}
+
+.fila-jugador.top-3.oro .posicion {
+    color: #f59e0b;
+}
+
+.fila-jugador.usuario-activo {
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+    color: white;
+}
+
+.fila-jugador.usuario-activo .posicion,
+.fila-jugador.usuario-activo .xp {
+    color: white;
+}
+
+.fila-jugador.top-3.bronce {
+    border-color: #d97706;
+}
+
+.fila-jugador.zona-ascenso {
+    border-left: 4px solid var(--primary-green);
+}
+
+.fila-jugador.zona-descenso {
+    border-left: 4px solid #ef4444;
+    opacity: 0.8;
+}
+
+/* Panel derecho: Jerarquía de ligas */
+.jerarquia-ligas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.nivel-liga {
+    padding: 10px 15px;
+    border-radius: 6px;
+    background-color: #1a2234;
+    border: 1px solid var(--border-color);
+    font-weight: 600;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.nivel-liga.activa {
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+    color: white;
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+.nivel-liga.completada {
+    color: var(--primary-green);
+    border-color: var(--primary-green);
+}
+
+.nivel-liga.opaco {
+    color: var(--text-muted);
+    opacity: 0.5;
+}

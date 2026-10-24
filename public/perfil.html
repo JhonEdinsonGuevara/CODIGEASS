@@ -18,9 +18,10 @@
                 <a href="index.html" class="item-menu">Inicio</a>
                 <a href="rutas.html" class="item-menu">Rutas</a>
                 <a href="ligas.html" class="item-menu">Ligas</a>
-                <a href="desafios.html" class="item-menu">Desafíos</a>
+                <a href="desafio.html" class="item-menu">Desafíos</a>
                 <a href="tienda.html" class="item-menu">Tienda</a>
                 <a href="perfil.html" class="item-menu activo">Perfil</a>
+                <button class="item-menu boton-cerrar-sesion" type="button" data-logout>Cerrar sesión</button>
             </nav>
         </aside>
 
@@ -31,8 +32,8 @@
             <header class="barra-superior">
                 <div class="info-curso">Perfil de Estudiante</div>
                 <div class="estadisticas-usuario">
-                    <span class="estadistica racha">🔥 Racha: 7 Días</span>
-                    <span class="estadistica experiencia">✨ 1,450 XP | ❤️ 5/5</span>
+                    <span class="estadistica racha">🔥 Racha: <span data-stat="streak">0</span> días</span>
+                    <span class="estadistica experiencia">✨ <span data-stat="xp">0</span> XP | ❤️ <span data-stat="hearts">5/5</span></span>
                 </div>
             </header>
 
@@ -41,11 +42,11 @@
                 
                 <!-- Encabezado del Usuario -->
                 <div class="tarjeta-perfil-header">
-                    <div class="avatar-perfil">⚡</div>
+                    <div class="avatar-perfil" data-profile-avatar aria-label="Avatar del usuario">⚡</div>
                     <div class="info-usuario-perfil">
                         <h2 class="nombre-usuario">Jhon (Codigeass)</h2>
                         <p class="rol-usuario">Desarrollador Frontend Web</p>
-                        <span class="fecha-registro">📅 Miembro desde Octubre 2026</span>
+                        <span class="fecha-registro" data-member-since></span>
                     </div>
                 </div>
 
@@ -54,14 +55,14 @@
                     <div class="caja-stat-perfil">
                         <span class="icono-stat">🔥</span>
                         <div class="datos-stat">
-                            <h3>7 Días</h3>
+                            <h3><span data-stat="streak">0</span> días</h3>
                             <p>Racha Actual</p>
                         </div>
                     </div>
                     <div class="caja-stat-perfil">
                         <span class="icono-stat">✨</span>
                         <div class="datos-stat">
-                            <h3>1,450 XP</h3>
+                            <h3><span data-stat="xp">0</span> XP</h3>
                             <p>Experiencia Total</p>
                         </div>
                     </div>
@@ -75,7 +76,7 @@
                     <div class="caja-stat-perfil">
                         <span class="icono-stat">📚</span>
                         <div class="datos-stat">
-                            <h3>12 Lecciones</h3>
+                            <h3><span data-stat="lessons">0</span> lecciones</h3>
                             <p>Completadas</p>
                         </div>
                     </div>
@@ -85,17 +86,17 @@
                 <div class="seccion-logros">
                     <h3 class="titulo-logros">Insignias y Logros</h3>
                     <div class="grid-logros">
-                        <div class="tarjeta-logro desbloqueado">
+                        <div class="tarjeta-logro bloqueado" data-achievement="first-lesson">
                             <div class="icono-logro">🚀</div>
                             <h4>Primer Paso</h4>
                             <p>Completaste tu primera lección en Codigeass.</p>
                         </div>
-                        <div class="tarjeta-logro desbloqueado">
+                        <div class="tarjeta-logro bloqueado" data-achievement="streak">
                             <div class="icono-logro">🔥</div>
                             <h4>En Racha</h4>
                             <p>Mantuviste una racha de 7 días seguidos.</p>
                         </div>
-                        <div class="tarjeta-logro desbloqueado">
+                        <div class="tarjeta-logro bloqueado" data-achievement="python">
                             <div class="icono-logro">🐍</div>
                             <h4>PyMaster</h4>
                             <p>Dominaste los conceptos básicos de Python.</p>
@@ -108,8 +109,12 @@
                     </div>
                 </div>
 
+                <button class="btn-secundario" type="button" data-reset-progress>Reiniciar mi progreso</button>
+
             </div>
         </main>
     </div>
+    <div class="mensaje-app" role="status" aria-live="polite"></div>
+    <script src="app.js" defer></script>
 </body>
 </html>

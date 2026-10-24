@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <title>Acceso - Codigeass</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="auth.js" defer></script>
+</head>
+<body class="pagina-login">
+    <main class="contenedor-login">
+        <a class="logo-login" href="/login.html">CODIGEASS</a>
+        <section class="tarjeta-login" aria-labelledby="titulo-login">
+            <p class="subtitulo-login">APRENDE · PRACTICA · AVANZA</p>
+            <h1 id="titulo-login">Tu camino empieza aquí</h1>
+            <p class="descripcion-login">Inicia sesión o crea una cuenta para guardar tu progreso.</p>
+
+            <div class="pestanas-login" role="tablist" aria-label="Acceso a tu cuenta">
+                <button class="pestana-login activa" id="pestana-ingresar" type="button" role="tab" aria-selected="true" aria-controls="formulario-ingresar" data-auth-mode="login">Iniciar sesión</button>
+                <button class="pestana-login" id="pestana-crear" type="button" role="tab" aria-selected="false" aria-controls="formulario-crear" data-auth-mode="register">Crear cuenta</button>
+            </div>
+
+            <form class="formulario-login" id="formulario-ingresar" data-auth-form="login" role="tabpanel" aria-labelledby="pestana-ingresar">
+                <label for="usuario-ingresar">Nombre de usuario</label>
+                <input id="usuario-ingresar" name="username" type="text" minlength="3" maxlength="24" pattern="[A-Za-z0-9_\-]{3,24}" autocomplete="username" required>
+                <label for="contrasena-ingresar">Contraseña</label>
+                <input id="contrasena-ingresar" name="password" type="password" minlength="10" maxlength="72" autocomplete="current-password" required>
+                <button class="btn-iniciar btn-acceso" type="submit">Entrar</button>
+            </form>
+
+            <form class="formulario-login" id="formulario-crear" data-auth-form="register" role="tabpanel" aria-labelledby="pestana-crear" hidden>
+                <label for="usuario-crear">Nombre de usuario</label>
+                <input id="usuario-crear" name="username" type="text" minlength="3" maxlength="24" pattern="[A-Za-z0-9_\-]{3,24}" autocomplete="username" aria-describedby="ayuda-usuario" required>
+                <small id="ayuda-usuario">Usa de 3 a 24 letras, números, guiones o guiones bajos.</small>
+                <label for="contrasena-crear">Contraseña</label>
+                <input id="contrasena-crear" name="password" type="password" minlength="10" maxlength="72" autocomplete="new-password" aria-describedby="ayuda-contrasena" required>
+                <small id="ayuda-contrasena">Debe tener al menos 10 caracteres. No se puede recuperar si la olvidas.</small>
+                <button class="btn-iniciar btn-acceso" type="submit">Crear cuenta y comenzar</button>
+            </form>
+
+            <p class="mensaje-acceso" role="status" aria-live="polite"></p>
+            <p class="nota-acceso">Tu contraseña se guarda protegida. Tu progreso permanece en esta computadora.</p>
+        </section>
+    </main>
+</body>
+</html>

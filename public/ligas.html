@@ -18,13 +18,22 @@
                 <a href="index.html" class="item-menu">Inicio</a>
                 <a href="rutas.html" class="item-menu">Rutas</a>
                 <a href="ligas.html" class="item-menu activo">Ligas</a>
-                <a href="desafios.html" class="item-menu">Desafíos</a>
+                <a href="desafio.html" class="item-menu">Desafíos</a>
                 <a href="tienda.html" class="item-menu">Tienda</a>
                 <a href="perfil.html" class="item-menu">Perfil</a>
+                <button class="item-menu boton-cerrar-sesion" type="button" data-logout>Cerrar sesión</button>
             </nav>
         </aside>
 
-        <!-- Área de Trabajo de Ligas -->
+        <main class="contenido-principal">
+            <header class="barra-superior">
+                <div class="info-curso">Clasificación de la liga</div>
+                <div class="estadisticas-usuario">
+                    <span class="estadistica racha">🔥 Racha: <span data-stat="streak">0</span> días</span>
+                    <span class="estadistica experiencia">✨ <span data-stat="xp">0</span> XP | ❤️ <span data-stat="hearts">5/5</span></span>
+                </div>
+            </header>
+
 <div class="area-trabajo">
     
     <!-- Panel Central: Tabla de Clasificación -->
@@ -35,7 +44,7 @@
             <div class="icono-liga">🥈</div>
             <div class="info-liga">
                 <h2>LIGA PLATA</h2>
-                <p>Los 5 primeros ascienden a la Liga Oro al finalizar la semana.</p>
+                <p>Tabla de ejemplo. Las posiciones no se comparten en línea.</p>
             </div>
         </div>
 
@@ -53,9 +62,9 @@
             <!-- Posición 2 (Tú) -->
             <div class="fila-jugador top-3 usuario-activo">
                 <span class="posicion">2</span>
-                <span class="avatar">⚡</span>
-                <span class="nombre">TÚ (Codigeass)</span>
-                <span class="xp">1,450 XP</span>
+                <span class="avatar" data-league-avatar>⚡</span>
+                <span class="nombre" data-league-name></span>
+                <span class="xp"><span data-stat="xp">0</span> XP</span>
             </div>
 
             <!-- Posición 3 -->
@@ -100,6 +109,10 @@
     </aside>
 
 </div>
-    
+        </main>
+    </div>
+
+    <div class="mensaje-app" role="status" aria-live="polite"></div>
+    <script src="app.js" defer></script>
 </body>
 </html>

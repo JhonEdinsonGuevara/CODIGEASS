@@ -18,9 +18,10 @@
                 <a href="index.html" class="item-menu">Inicio</a>
                 <a href="rutas.html" class="item-menu">Rutas</a>
                 <a href="ligas.html" class="item-menu">Ligas</a>
-                <a href="desafios.html" class="item-menu">Desafíos</a>
+                <a href="desafio.html" class="item-menu">Desafíos</a>
                 <a href="tienda.html" class="item-menu activo">Tienda</a>
                 <a href="perfil.html" class="item-menu">Perfil</a>
+                <button class="item-menu boton-cerrar-sesion" type="button" data-logout>Cerrar sesión</button>
             </nav>
         </aside>
 
@@ -31,8 +32,8 @@
             <header class="barra-superior">
                 <div class="info-curso">Tienda de Recompensas Codigeass</div>
                 <div class="estadisticas-usuario">
-                    <span class="estadistica racha">🔥 Racha: 7 Días</span>
-                    <span class="estadistica experiencia">✨ 1,450 XP | ❤️ 5/5</span>
+                    <span class="estadistica racha">🔥 Racha: <span data-stat="streak">0</span> días</span>
+                    <span class="estadistica experiencia">✨ <span data-stat="xp">0</span> XP | ❤️ <span data-stat="hearts">5/5</span></span>
                 </div>
             </header>
 
@@ -43,7 +44,7 @@
                 <div class="cuadricula-tienda">
                     
                     <!-- Artículo 1: Recargar Vidas -->
-                    <div class="tarjeta-tienda">
+                    <div class="tarjeta-tienda" data-shop-item="hearts">
                         <div class="icono-articulo">❤️</div>
                         <div class="detalles-articulo">
                             <h3 class="titulo-articulo">Rellenar Vidas</h3>
@@ -51,12 +52,12 @@
                         </div>
                         <div class="pie-articulo">
                             <span class="precio-articulo">✨ 300 XP</span>
-                            <button class="btn-comprar">Comprar</button>
+                            <button class="btn-comprar" type="button" data-buy="hearts" data-price="300">Comprar por 300 XP</button>
                         </div>
                     </div>
 
                     <!-- Artículo 2: Protector de Racha -->
-                    <div class="tarjeta-tienda">
+                    <div class="tarjeta-tienda" data-shop-item="streak-shield">
                         <div class="icono-articulo">🛡️</div>
                         <div class="detalles-articulo">
                             <h3 class="titulo-articulo">Protector de Racha</h3>
@@ -64,25 +65,25 @@
                         </div>
                         <div class="pie-articulo">
                             <span class="precio-articulo">✨ 500 XP</span>
-                            <button class="btn-comprar">Comprar</button>
+                            <button class="btn-comprar" type="button" disabled>Próximamente</button>
                         </div>
                     </div>
 
                     <!-- Artículo 3: Multiplicador de XP -->
-                    <div class="tarjeta-tienda">
+                    <div class="tarjeta-tienda" data-shop-item="double-xp">
                         <div class="icono-articulo">⚡</div>
                         <div class="detalles-articulo">
                             <h3 class="titulo-articulo">Doble XP (1 Hora)</h3>
-                            <p class="descripcion-articulo">Gana el doble de puntos de experiencia en todas tus lecciones.</p>
+                            <p class="descripcion-articulo">Gana el doble de experiencia en lecciones y desafíos durante una hora.</p>
                         </div>
                         <div class="pie-articulo">
                             <span class="precio-articulo">✨ 400 XP</span>
-                            <button class="btn-comprar">Comprar</button>
+                            <button class="btn-comprar" type="button" data-buy="double-xp" data-price="400">Comprar por 400 XP</button>
                         </div>
                     </div>
 
                     <!-- Artículo 4: Avatar Ninja -->
-                    <div class="tarjeta-tienda">
+                    <div class="tarjeta-tienda" data-shop-item="ninja">
                         <div class="icono-articulo">🥷</div>
                         <div class="detalles-articulo">
                             <h3 class="titulo-articulo">Avatar Code Ninja</h3>
@@ -90,12 +91,12 @@
                         </div>
                         <div class="pie-articulo">
                             <span class="precio-articulo">✨ 800 XP</span>
-                            <button class="btn-comprar">Comprar</button>
+                            <button class="btn-comprar" type="button" data-buy="ninja" data-price="800">Comprar por 800 XP</button>
                         </div>
                     </div>
 
                     <!-- Artículo 5: Título Cyber Dev -->
-                    <div class="tarjeta-tienda">
+                    <div class="tarjeta-tienda" data-shop-item="cyber-title">
                         <div class="icono-articulo">👑</div>
                         <div class="detalles-articulo">
                             <h3 class="titulo-articulo">Título "Cyber Dev"</h3>
@@ -103,12 +104,12 @@
                         </div>
                         <div class="pie-articulo">
                             <span class="precio-articulo">✨ 1,000 XP</span>
-                            <button class="btn-comprar">Comprar</button>
+                            <button class="btn-comprar" type="button" data-buy="cyber-title" data-price="1000">Comprar por 1,000 XP</button>
                         </div>
                     </div>
 
                     <!-- Artículo 6: Congelador de Racha -->
-                    <div class="tarjeta-tienda">
+                    <div class="tarjeta-tienda" data-shop-item="streak-freeze">
                         <div class="icono-articulo">❄️</div>
                         <div class="detalles-articulo">
                             <h3 class="titulo-articulo">Congelador de Racha</h3>
@@ -116,7 +117,7 @@
                         </div>
                         <div class="pie-articulo">
                             <span class="precio-articulo">✨ 600 XP</span>
-                            <button class="btn-comprar">Comprar</button>
+                            <button class="btn-comprar" type="button" disabled>Próximamente</button>
                         </div>
                     </div>
 
@@ -125,5 +126,7 @@
             </div>
         </main>
     </div>
+    <div class="mensaje-app" role="status" aria-live="polite"></div>
+    <script src="app.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codigeass - Rutas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="pagina-rutas">
+    <div class="contenedor-app">
+        <aside class="barra-lateral">
+            <div class="contenedor-logo">
+                <h1 class="logo">CODIGEASS</h1>
+            </div>
+            <nav class="menu" aria-label="Navegación principal">
+                <a href="index.html" class="item-menu">Inicio</a>
+                <a href="rutas.html" class="item-menu activo" aria-current="page">Rutas</a>
+                <a href="ligas.html" class="item-menu">Ligas</a>
+                <a href="desafio.html" class="item-menu">Desafíos</a>
+                <a href="tienda.html" class="item-menu">Tienda</a>
+                <a href="perfil.html" class="item-menu">Perfil</a>
+                <button class="item-menu boton-cerrar-sesion" type="button" data-logout>Cerrar sesión</button>
+            </nav>
+        </aside>
+
+        <main class="contenido-principal">
+            <header class="barra-superior">
+                <div class="info-curso">Rutas de aprendizaje</div>
+                <div class="estadisticas-usuario">
+                    <span class="estadistica racha">🔥 Racha: <span data-stat="streak">0</span> días</span>
+                    <span class="estadistica experiencia">✨ <span data-stat="xp">0</span> XP | ❤️ <span data-stat="hearts">5/5</span></span>
+                </div>
+            </header>
+
+            <section class="area-trabajo area-rutas" aria-labelledby="titulo-rutas">
+                <div class="encabezado-rutas">
+                    <div>
+                        <h2 id="titulo-rutas">¿Qué quieres aprender?</h2>
+                        <p>Elige una ruta y avanza a tu propio ritmo.</p>
+                    </div>
+                    <span class="contador-rutas">1 ruta disponible · 5 próximamente</span>
+                </div>
+
+                <div class="cuadricula-rutas">
+                    <article class="tarjeta-ruta ruta-disponible">
+                        <div class="contenido-frontal">
+                            <span class="icono-lenguaje" aria-hidden="true">🐍</span>
+                            <div class="titulo-y-estado">
+                                <h3 class="titulo-ruta">Python</h3>
+                                <span class="estado-ruta">Disponible</span>
+                            </div>
+                        </div>
+                        <p class="descripcion-ruta">Aprende lógica, estructuras de datos y automatización.</p>
+                        <a class="btn-iniciar" href="index.html">Ir al curso de Python <span aria-hidden="true">→</span></a>
+                    </article>
+
+                    <article class="tarjeta-ruta">
+                        <div class="contenido-frontal">
+                            <span class="icono-lenguaje" aria-hidden="true">🌐</span>
+                            <div class="titulo-y-estado">
+                                <h3 class="titulo-ruta">HTML</h3>
+                                <span class="estado-ruta estado-proximamente">Próximamente</span>
+                            </div>
+                        </div>
+                        <p class="descripcion-ruta">Domina la estructura web y la semántica de las páginas.</p>
+                    </article>
+
+                    <article class="tarjeta-ruta">
+                        <div class="contenido-frontal">
+                            <span class="icono-lenguaje" aria-hidden="true">🎨</span>
+                            <div class="titulo-y-estado">
+                                <h3 class="titulo-ruta">CSS</h3>
+                                <span class="estado-ruta estado-proximamente">Próximamente</span>
+                            </div>
+                        </div>
+                        <p class="descripcion-ruta">Aprende Flexbox, Grid, animaciones y diseño responsivo.</p>
+                    </article>
+
+                    <article class="tarjeta-ruta">
+                        <div class="contenido-frontal">
+                            <span class="icono-lenguaje" aria-hidden="true">⚡</span>
+                            <div class="titulo-y-estado">
+                                <h3 class="titulo-ruta">JavaScript</h3>
+                                <span class="estado-ruta estado-proximamente">Próximamente</span>
+                            </div>
+                        </div>
+                        <p class="descripcion-ruta">Agrega interactividad, manipula el DOM y consume APIs.</p>
+                    </article>
+
+                    <article class="tarjeta-ruta">
+                        <div class="contenido-frontal">
+                            <span class="icono-lenguaje" aria-hidden="true">☕</span>
+                            <div class="titulo-y-estado">
+                                <h3 class="titulo-ruta">Java</h3>
+                                <span class="estado-ruta estado-proximamente">Próximamente</span>
+                            </div>
+                        </div>
+                        <p class="descripcion-ruta">Programación orientada a objetos y desarrollo backend.</p>
+                    </article>
+
+                    <article class="tarjeta-ruta">
+                        <div class="contenido-frontal">
+                            <span class="icono-lenguaje" aria-hidden="true">🎯</span>
+                            <div class="titulo-y-estado">
+                                <h3 class="titulo-ruta">C#</h3>
+                                <span class="estado-ruta estado-proximamente">Próximamente</span>
+                            </div>
+                        </div>
+                        <p class="descripcion-ruta">Crea aplicaciones empresariales y videojuegos con Unity.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div class="mensaje-app" role="status" aria-live="polite"></div>
+    <script src="app.js" defer></script>
+</body>
+</html>

@@ -21,7 +21,7 @@
         background-color: var(--bg-main);
         color: var(--text-main);
         height: 100vh;
-        overflow: hidden; /* Evita el scroll general
+        overflow: hidden; /* Evita el scroll general */
     }
 
     /* Contenedor principal usando Flexbox */
@@ -250,101 +250,203 @@
     color: var(--text-muted);
 } 
 
-/* --- ESTILOS PARA LA SECCIÓN DE RUTAS (CUADRÍCULA Y HOVER) --- */
+/* --- ESTILOS PARA LA SECCIÓN DE RUTAS --- */
+.pagina-rutas .contenido-principal {
+    min-width: 0;
+}
 
-/* 1. Contenedor de la cuadrícula 3x2 */
+.area-rutas {
+    display: block;
+    overflow-y: auto;
+    padding: 4px 4px 20px;
+}
+
+.encabezado-rutas {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    margin: 0 6px 22px;
+}
+
+.encabezado-rutas h2 {
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+}
+
+.encabezado-rutas p,
+.contador-rutas {
+    color: var(--text-muted);
+}
+
+.contador-rutas {
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+
 .cuadricula-rutas {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Crea exactamente 3 columnas del mismo tamaño */
-    gap: 30px; /* Espacio de separación entre las tarjetas */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
     width: 100%;
-    padding: 10px;
+    padding: 6px;
 }
 
-/* 2. Tarjeta individual principal */
 .tarjeta-ruta {
     background-color: var(--bg-panel);
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    height: 240px; /* Altura fija para que el efecto visual funcione perfecto */
-    position: relative; /* Clave para posicionar la capa oculta adentro */
-    overflow: hidden; /* Oculta todo lo que se salga de los bordes de la tarjeta */
-    cursor: pointer;
-    transition: border-color 0.3s ease;
-}
-
-/* Resalta el borde de verde al pasar el mouse */
-.tarjeta-ruta:hover {
-    border-color: var(--primary-green);
-}
-
-/* 3. Capa frontal (Logo y Título que se ven siempre) */
-.contenido-frontal {
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    min-height: 218px;
+    padding: 22px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: flex-start;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-ruta:hover {
+    border-color: var(--primary-green);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.contenido-frontal {
+    display: flex;
     align-items: center;
-    height: 100%;
-    transition: transform 0.3s ease;
+    gap: 14px;
+    width: 100%;
 }
 
 .icono-lenguaje {
-    font-size: 4.5rem; /* Tamaño grande para el emoji o logo */
-    margin-bottom: 15px;
+    width: 58px;
+    height: 58px;
+    flex: 0 0 58px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background-color: rgba(16, 185, 129, 0.12);
+    font-size: 2rem;
 }
 
 .titulo-ruta {
     color: var(--text-main);
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 7px;
 }
 
-/* 4. Capa de Detalles (Efecto Hover de la Opción B) */
-.detalles-hover {
-    position: absolute; /* Se superpone encima de la capa frontal */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(30, 41, 59, 0.95); /* Fondo azul oscuro casi sólido */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    text-align: center;
-    
-    /* Empuja esta capa hacia abajo, fuera de la vista de la tarjeta */
-    transform: translateY(100%); 
-    transition: transform 0.3s ease; /* Animación suave al moverse */
+.titulo-y-estado {
+    min-width: 0;
 }
 
-/* LA MAGIA: Cuando pasas el mouse (:hover) por la tarjeta, la capa oculta sube */
-.tarjeta-ruta:hover .detalles-hover {
-    transform: translateY(0); /* Regresa a la posición 0 (visible) */
+.estado-ruta {
+    display: inline-block;
+    color: var(--primary-green);
+    font-size: 0.76rem;
+    font-weight: 700;
 }
 
 .descripcion-ruta {
     color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-bottom: 25px;
+    font-size: 0.9rem;
+    margin: 18px 0;
     line-height: 1.4;
+    flex: 1;
 }
 
-/* Botón de la tarjeta */
+.estado-proximamente {
+    color: var(--text-muted);
+}
+
 .btn-iniciar {
     background-color: var(--primary-green);
     color: white;
-    border: none;
-    padding: 12px 25px;
+    text-decoration: none;
+    padding: 10px 14px;
     border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s;
+    font-weight: 700;
+    transition: background-color 0.2s ease;
 }
 
 .btn-iniciar:hover {
     background-color: var(--primary-green-hover);
+}
+
+.btn-iniciar:focus-visible,
+.pagina-rutas .item-menu:focus-visible {
+    outline: 3px solid var(--accent-cyan);
+    outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+    .cuadricula-rutas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .pagina-rutas {
+        height: auto;
+        min-height: 100vh;
+        overflow: auto;
+    }
+
+    .pagina-rutas .contenedor-app {
+        height: auto;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+
+    .pagina-rutas .barra-lateral {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .pagina-rutas .contenedor-logo {
+        margin-bottom: 12px;
+    }
+
+    .pagina-rutas .menu {
+        flex-direction: row;
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+
+    .pagina-rutas .item-menu {
+        flex: 0 0 auto;
+        padding: 9px 12px;
+    }
+
+    .pagina-rutas .contenido-principal {
+        padding: 14px;
+    }
+
+    .pagina-rutas .barra-superior {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .pagina-rutas .estadisticas-usuario {
+        flex-wrap: wrap;
+        gap: 8px 14px;
+    }
+
+    .area-rutas {
+        overflow: visible;
+    }
+}
+
+@media (max-width: 460px) {
+    .cuadricula-rutas {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .encabezado-rutas {
+        align-items: flex-start;
+        flex-direction: column;
+    }
 }
 /* --- ESTILOS PARA LA SECCIÓN DE LIGAS --- */
 
@@ -790,4 +892,519 @@
     font-size: 0.8rem;
     color: var(--text-muted);
     line-height: 1.3;
+}
+
+.ayuda-curso,
+.progreso-mision,
+.resumen-progreso {
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.ayuda-curso {
+    margin: -24px 0 22px;
+    text-align: center;
+}
+
+.progreso-mision {
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+}
+
+.resumen-progreso {
+    margin-bottom: 14px;
+}
+
+.enlace-panel {
+    color: var(--primary-green);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.enlace-panel:hover {
+    color: var(--accent-cyan);
+}
+
+.nodo {
+    background: var(--bg-panel);
+    color: var(--text-main);
+    cursor: pointer;
+    padding: 0;
+    transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+.nodo:not(:disabled):hover {
+    border-color: var(--primary-green);
+    transform: scale(1.06);
+}
+
+.nodo.completado {
+    background-color: rgba(16, 185, 129, 0.18);
+}
+
+.nodo.bloqueado,
+.nodo:disabled {
+    cursor: not-allowed;
+}
+
+.btn-iniciar:disabled,
+.btn-comprar:disabled {
+    background-color: #475569;
+    color: #cbd5e1;
+    cursor: not-allowed;
+    opacity: 0.85;
+}
+
+.btn-iniciar:disabled:hover,
+.btn-comprar:disabled:hover {
+    background-color: #475569;
+}
+
+.btn-iniciar:focus-visible,
+.btn-comprar:focus-visible,
+.nodo:focus-visible,
+.btn-secundario:focus-visible,
+.item-menu:focus-visible {
+    outline: 3px solid var(--accent-cyan);
+    outline-offset: 3px;
+}
+
+.btn-secundario {
+    align-self: flex-start;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px 14px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.btn-secundario:hover {
+    border-color: #ef4444;
+    color: #fca5a5;
+}
+
+.reto-completado {
+    border-color: var(--primary-green);
+}
+
+.dialogo-ejercicio {
+    width: min(92vw, 540px);
+    max-width: 540px;
+    padding: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    background: var(--bg-panel);
+    color: var(--text-main);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+}
+
+.dialogo-ejercicio::backdrop {
+    background: rgba(2, 6, 23, 0.78);
+    backdrop-filter: blur(4px);
+}
+
+.formulario-ejercicio {
+    position: relative;
+    padding: 30px;
+}
+
+.cerrar-dialogo {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    border: 0;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.subtitulo-dialogo {
+    margin-bottom: 8px;
+    color: var(--primary-green);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.formulario-ejercicio h2 {
+    margin: 0 28px 12px 0;
+}
+
+.explicacion-ejercicio {
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.pregunta-ejercicio {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+#respuesta-ejercicio {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-size: 1rem;
+}
+
+#respuesta-ejercicio:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 2px;
+}
+
+.resultado-ejercicio {
+    min-height: 24px;
+    margin-top: 10px;
+    color: var(--accent-orange);
+    font-size: 0.9rem;
+}
+
+.acciones-dialogo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.premio-dialogo {
+    color: #c084fc;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.mensaje-app {
+    position: fixed;
+    z-index: 20;
+    right: 22px;
+    bottom: 22px;
+    max-width: min(420px, calc(100vw - 32px));
+    padding: 14px 18px;
+    border: 1px solid var(--primary-green);
+    border-radius: 10px;
+    background: var(--bg-panel);
+    color: var(--text-main);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.mensaje-app.mensaje-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mensaje-app.mensaje-error {
+    border-color: #ef4444;
+}
+
+@media (max-width: 900px) {
+    .contenedor-desafios,
+    .cuadricula-tienda {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        overflow: visible;
+    }
+
+    .grid-estadisticas-perfil,
+    .grid-logros {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    body {
+        height: auto;
+        min-height: 100vh;
+        overflow: auto;
+    }
+
+    .contenedor-app {
+        height: auto;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+
+    .barra-lateral {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .contenedor-logo {
+        margin-bottom: 12px;
+    }
+
+    .menu {
+        flex-direction: row;
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+
+    .item-menu {
+        flex: 0 0 auto;
+        padding: 9px 12px;
+    }
+
+    .contenido-principal {
+        min-width: 0;
+        padding: 14px;
+    }
+
+    .barra-superior {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .estadisticas-usuario {
+        flex-wrap: wrap;
+        gap: 8px 14px;
+    }
+
+    .area-trabajo,
+    .inicio-trabajo {
+        flex-direction: column;
+        overflow: visible;
+    }
+
+    .panel-derecho {
+        width: 100%;
+    }
+
+    .panel-arbol-habilidades {
+        min-height: 420px;
+        padding: 20px 12px;
+    }
+
+    .ayuda-curso {
+        margin: -25px 0 20px;
+        font-size: 0.9rem;
+    }
+
+    .fila-rama {
+        gap: 16px;
+    }
+
+    .tarjeta-perfil-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .contenedor-desafios,
+    .cuadricula-tienda {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tarjeta-desafio,
+    .tarjeta-tienda {
+        min-height: 220px;
+        height: auto;
+        gap: 18px;
+    }
+
+    .formulario-ejercicio {
+        padding: 24px 18px;
+    }
+
+    .acciones-dialogo {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .mensaje-app {
+        right: 16px;
+        bottom: 16px;
+    }
+}
+
+@media (max-width: 460px) {
+    .grid-estadisticas-perfil,
+    .grid-logros {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .fila-jugador {
+        padding: 10px;
+    }
+
+    .avatar {
+        margin-right: 8px;
+    }
+}
+
+.boton-cerrar-sesion {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+}
+
+.boton-cerrar-sesion:hover {
+    color: #fca5a5;
+}
+
+.pagina-login {
+    min-height: 100vh;
+    height: auto;
+    overflow: auto;
+    display: grid;
+    place-items: center;
+    padding: 28px 16px;
+    background:
+        radial-gradient(ellipse at 15% 15%, rgba(16, 185, 129, 0.14), transparent 38%),
+        var(--bg-main);
+}
+
+.contenedor-login {
+    width: min(100%, 440px);
+}
+
+.logo-login {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 22px;
+    color: var(--primary-green);
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-decoration: none;
+}
+
+.tarjeta-login {
+    padding: 32px;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    background: var(--bg-panel);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.subtitulo-login {
+    margin-bottom: 10px;
+    color: var(--primary-green);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+.tarjeta-login h1 {
+    font-size: 1.8rem;
+    line-height: 1.2;
+}
+
+.descripcion-login {
+    margin-top: 10px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.pestanas-login {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin: 24px 0;
+    padding: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-main);
+}
+
+.pestana-login {
+    padding: 10px 8px;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--text-muted);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.pestana-login.activa {
+    background: var(--primary-green);
+    color: white;
+}
+
+.formulario-login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formulario-login[hidden] {
+    display: none;
+}
+
+.formulario-login label {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.formulario-login input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-size: 1rem;
+}
+
+.formulario-login input:focus-visible,
+.pestana-login:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 2px;
+}
+
+.formulario-login small {
+    margin: -5px 0 3px;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+.btn-acceso {
+    width: 100%;
+    margin-top: 12px;
+    font-size: 0.95rem;
+}
+
+.mensaje-acceso {
+    min-height: 24px;
+    margin-top: 16px;
+    color: var(--primary-green);
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
+.mensaje-acceso.mensaje-error {
+    color: #fca5a5;
+}
+
+.nota-acceso {
+    padding-top: 14px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    line-height: 1.45;
+}
+
+@media (max-width: 460px) {
+    .tarjeta-login {
+        padding: 24px 18px;
+    }
+
+    .tarjeta-login h1 {
+        font-size: 1.55rem;
+    }
 }

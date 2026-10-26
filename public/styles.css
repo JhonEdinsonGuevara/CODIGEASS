@@ -250,18 +250,18 @@
     color: var(--text-muted);
 } 
 
-/* --- ESTILOS PARA LA SECCIÓN DE RUTAS --- */
-.pagina-rutas .contenido-principal {
+/* --- ESTILOS PARA LA SECCIÓN DE CURSOS --- */
+.pagina-cursos .contenido-principal {
     min-width: 0;
 }
 
-.area-rutas {
+.area-cursos {
     display: block;
     overflow-y: auto;
     padding: 4px 4px 20px;
 }
 
-.encabezado-rutas {
+.encabezado-cursos {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -269,22 +269,22 @@
     margin: 0 6px 22px;
 }
 
-.encabezado-rutas h2 {
+.encabezado-cursos h2 {
     font-size: 1.5rem;
     margin-bottom: 6px;
 }
 
-.encabezado-rutas p,
-.contador-rutas {
+.encabezado-cursos p,
+.contador-cursos {
     color: var(--text-muted);
 }
 
-.contador-rutas {
+.contador-cursos {
     white-space: nowrap;
     font-size: 0.9rem;
 }
 
-.cuadricula-rutas {
+.cuadricula-cursos {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px;
@@ -292,7 +292,7 @@
     padding: 6px;
 }
 
-.tarjeta-ruta {
+.tarjeta-curso {
     background-color: var(--bg-panel);
     border: 1px solid var(--border-color);
     border-radius: 14px;
@@ -304,7 +304,7 @@
     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.tarjeta-ruta:hover {
+.tarjeta-curso:hover {
     border-color: var(--primary-green);
     transform: translateY(-3px);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
@@ -328,7 +328,7 @@
     font-size: 2rem;
 }
 
-.titulo-ruta {
+.titulo-curso {
     color: var(--text-main);
     font-size: 1.2rem;
     margin-bottom: 7px;
@@ -353,10 +353,6 @@
     flex: 1;
 }
 
-.estado-proximamente {
-    color: var(--text-muted);
-}
-
 .btn-iniciar {
     background-color: var(--primary-green);
     color: white;
@@ -372,78 +368,78 @@
 }
 
 .btn-iniciar:focus-visible,
-.pagina-rutas .item-menu:focus-visible {
+.pagina-cursos .item-menu:focus-visible {
     outline: 3px solid var(--accent-cyan);
     outline-offset: 3px;
 }
 
 @media (max-width: 900px) {
-    .cuadricula-rutas {
+    .cuadricula-cursos {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 640px) {
-    .pagina-rutas {
+    .pagina-cursos {
         height: auto;
         min-height: 100vh;
         overflow: auto;
     }
 
-    .pagina-rutas .contenedor-app {
+    .pagina-cursos .contenedor-app {
         height: auto;
         min-height: 100vh;
         flex-direction: column;
     }
 
-    .pagina-rutas .barra-lateral {
+    .pagina-cursos .barra-lateral {
         width: 100%;
         padding: 14px;
     }
 
-    .pagina-rutas .contenedor-logo {
+    .pagina-cursos .contenedor-logo {
         margin-bottom: 12px;
     }
 
-    .pagina-rutas .menu {
+    .pagina-cursos .menu {
         flex-direction: row;
         gap: 6px;
         overflow-x: auto;
         padding-bottom: 4px;
     }
 
-    .pagina-rutas .item-menu {
+    .pagina-cursos .item-menu {
         flex: 0 0 auto;
         padding: 9px 12px;
     }
 
-    .pagina-rutas .contenido-principal {
+    .pagina-cursos .contenido-principal {
         padding: 14px;
     }
 
-    .pagina-rutas .barra-superior {
+    .pagina-cursos .barra-superior {
         align-items: flex-start;
         flex-direction: column;
         gap: 12px;
         padding: 16px;
     }
 
-    .pagina-rutas .estadisticas-usuario {
+    .pagina-cursos .estadisticas-usuario {
         flex-wrap: wrap;
         gap: 8px 14px;
     }
 
-    .area-rutas {
+    .area-cursos {
         overflow: visible;
     }
 }
 
 @media (max-width: 460px) {
-    .cuadricula-rutas {
+    .cuadricula-cursos {
         grid-template-columns: minmax(0, 1fr);
     }
 
-    .encabezado-rutas {
+    .encabezado-cursos {
         align-items: flex-start;
         flex-direction: column;
     }
@@ -1248,6 +1244,11 @@
     background: transparent;
     text-align: left;
     cursor: pointer;
+}
+
+.estadisticas-usuario[hidden],
+.boton-cerrar-sesion[hidden] {
+    display: none;
 }
 
 .boton-cerrar-sesion:hover {

@@ -4,7 +4,8 @@
     const forms = Array.from(document.querySelectorAll("[data-auth-form]"));
     const allowedPages = new Set([
         "index.html",
-        "rutas.html",
+        "cursos.html",
+        "cursos.html",
         "ligas.html",
         "desafio.html",
         "tienda.html",
@@ -13,7 +14,18 @@
 
     function getDestination() {
         const requested = new URLSearchParams(window.location.search).get("next");
-        return requested && allowedPages.has(requested) ? `/${requested}` : "/index.html";
+        if (!requested) {
+            return "/index.html";
+        }
+        try {
+            const destination = new URL(requested, window.location.origin);
+            const page = destination.pathname.split("/").pop();
+            return destination.origin === window.location.origin && allowedPages.has(page)
+                ? `${destination.pathname}${destination.search}`
+                : "/index.html";
+        } catch (error) {
+            return "/index.html";
+        }
     }
 
     function showMessage(text, error = false) {

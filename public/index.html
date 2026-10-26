@@ -14,7 +14,7 @@
             </div>
             <nav class="menu" aria-label="Navegación principal">
                 <a href="index.html" class="item-menu activo" aria-current="page">Inicio</a>
-                <a href="rutas.html" class="item-menu">Rutas</a>
+                <a href="cursos.html" class="item-menu">Cursos</a>
                 <a href="ligas.html" class="item-menu">Ligas</a>
                 <a href="desafio.html" class="item-menu">Desafíos</a>
                 <a href="tienda.html" class="item-menu">Tienda</a>
@@ -25,7 +25,7 @@
 
         <main class="contenido-principal">
             <header class="barra-superior">
-                <div class="info-curso">Ruta de aprendizaje: Python</div>
+                <div class="info-curso" data-course-title>Curso de Python</div>
                 <div class="estadisticas-usuario">
                     <span class="estadistica racha">🔥 Racha: <span data-stat="streak">0</span> días</span>
                     <span class="estadistica experiencia">✨ <span data-stat="xp">0</span> XP | ❤️ <span data-stat="hearts">5/5</span></span>
@@ -34,32 +34,9 @@
 
             <div class="area-trabajo inicio-trabajo">
                 <section class="panel-arbol-habilidades" aria-labelledby="titulo-curso">
-                    <h2 class="titulo-seccion" id="titulo-curso">RUTA DE APRENDIZAJE: PYTHON</h2>
-                    <p class="ayuda-curso">Completa una lección para desbloquear la siguiente. Cada respuesta incorrecta consume una vida.</p>
-                    <div class="arbol-habilidades">
-                        <div class="contenedor-nodo">
-                            <button class="nodo pendiente" type="button" data-lesson-id="sintaxis" aria-label="Lección 1: Sintaxis de Python"></button>
-                            <p class="etiqueta-nodo">1. Sintaxis</p>
-                        </div>
-                        <div class="fila-rama">
-                            <div class="contenedor-nodo">
-                                <button class="nodo pendiente" type="button" data-lesson-id="condicionales" aria-label="Lección 2: Condicionales"></button>
-                                <p class="etiqueta-nodo">2. Condicionales</p>
-                            </div>
-                            <div class="contenedor-nodo">
-                                <button class="nodo pendiente" type="button" data-lesson-id="bucles" aria-label="Lección 3: Bucles"></button>
-                                <p class="etiqueta-nodo">3. Bucles</p>
-                            </div>
-                        </div>
-                        <div class="contenedor-nodo">
-                            <button class="nodo pendiente" type="button" data-lesson-id="funciones" aria-label="Lección 4: Funciones"></button>
-                            <p class="etiqueta-nodo">4. Funciones</p>
-                        </div>
-                        <div class="contenedor-nodo">
-                            <button class="nodo pendiente" type="button" data-lesson-id="clases" aria-label="Lección 5: Clases"></button>
-                            <p class="etiqueta-nodo">5. Clases</p>
-                        </div>
-                    </div>
+                    <h2 class="titulo-seccion" id="titulo-curso" data-course-heading>CURSO DE PYTHON</h2>
+                    <p class="ayuda-curso" data-course-description>Elige cualquier lección en el orden que prefieras. Cada respuesta incorrecta consume una vida.</p>
+                    <div class="arbol-habilidades lecciones-curso" data-course-lessons></div>
                 </section>
 
                 <aside class="panel-derecho">
@@ -75,8 +52,8 @@
                     </div>
                     <div class="tarjeta">
                         <h3 class="titulo-tarjeta texto-cian">Tu progreso</h3>
-                        <p class="resumen-progreso"><span data-stat="lessons">0</span> de 5 lecciones completadas</p>
-                        <a class="enlace-panel" href="rutas.html">Ver todas las rutas →</a>
+                        <p class="resumen-progreso"><span data-stat="lessons">0</span> lecciones completadas</p>
+                        <a class="enlace-panel" href="cursos.html">Ver todos los cursos →</a>
                     </div>
                 </aside>
             </div>

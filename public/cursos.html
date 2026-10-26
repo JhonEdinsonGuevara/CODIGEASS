@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codigeass - Cursos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="pagina-cursos">
+    <div class="contenedor-app">
+        <aside class="barra-lateral">
+            <div class="contenedor-logo">
+                <h1 class="logo">CODIGEASS</h1>
+            </div>
+            <nav class="menu" aria-label="Navegación principal">
+                <a href="index.html" class="item-menu">Inicio</a>
+                <a href="cursos.html" class="item-menu activo" aria-current="page">Cursos</a>
+                <a href="ligas.html" class="item-menu">Ligas</a>
+                <a href="desafio.html" class="item-menu">Desafíos</a>
+                <a href="tienda.html" class="item-menu">Tienda</a>
+                <a href="perfil.html" class="item-menu">Perfil</a>
+                <button class="item-menu boton-cerrar-sesion" type="button" data-logout>Cerrar sesión</button>
+            </nav>
+        </aside>
+
+        <main class="contenido-principal">
+            <header class="barra-superior">
+                <div class="info-curso">Cursos de programación</div>
+                <div class="estadisticas-usuario">
+                    <span class="estadistica racha">🔥 Racha: <span data-stat="streak">0</span> días</span>
+                    <span class="estadistica experiencia">✨ <span data-stat="xp">0</span> XP | ❤️ <span data-stat="hearts">5/5</span></span>
+                </div>
+            </header>
+
+            <section class="area-trabajo area-cursos" aria-labelledby="titulo-cursos">
+                <div class="encabezado-cursos">
+                    <div>
+                        <h2 id="titulo-cursos">¿Qué quieres aprender?</h2>
+                        <p>Elige cualquier curso y empieza por la lección que prefieras.</p>
+                    </div>
+                    <span class="contador-cursos">6 cursos disponibles</span>
+                </div>
+
+                <div class="cuadricula-cursos" data-courses-grid></div>
+            </section>
+        </main>
+    </div>
+    <div class="mensaje-app" role="status" aria-live="polite"></div>
+    <script src="app.js" defer></script>
+</body>
+</html>

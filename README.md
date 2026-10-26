@@ -44,7 +44,8 @@ La primera ejecución crea un archivo `.env` con una clave aleatoria. Se guarda 
 CODIGEASS/
 ├── public/                  Páginas y archivos que muestra el navegador
 │   ├── index.html           Inicio y ruta de aprendizaje de Python
-│   ├── rutas.html           Lista de rutas
+│   ├── cursos.html          Catálogo de cursos disponibles
+│   ├── rutas.html           Enlace antiguo que redirige a Cursos
 │   ├── desafio.html         Retos
 │   ├── ligas.html           Tabla de liga de demostración
 │   ├── tienda.html          Artículos que se pueden comprar con XP
@@ -97,11 +98,16 @@ La carpeta `.codigeass` está fuera del repositorio. En la base se guardan:
 
 El progreso de una cuenta no se mezcla con el de otra. Se guarda en SQLite incluso cuando apagas el servidor. Para respaldar tu progreso, haz una copia de la carpeta `.codigeass` **con el servidor detenido**. No copies esa base al repositorio público.
 
-Las contraseñas deben tener al menos 10 caracteres. El proyecto no pide un correo electrónico, así que aún no hay recuperación de contraseña. Si reinicias el progreso desde Perfil, se borran el XP, las compras y las actividades de esa cuenta; la cuenta se conserva.
+Los nombres de usuario deben tener entre 3 y 64 caracteres: letras, números, puntos, guiones bajos, guiones o `@`; no admiten espacios. Las contraseñas deben tener al menos 10 caracteres. El proyecto no verifica que un nombre con `@` sea una dirección de correo ni pide un correo para recuperar contraseñas. Si reinicias el progreso desde Perfil, se borran el XP, las compras y las actividades de esa cuenta; la cuenta se conserva.
+
+En el servidor local, puedes volver a intentar registrarte sin esperar un período de bloqueo. Los intentos de inicio de sesión siguen limitados para proteger las cuentas. Si publicas la aplicación, el registro también queda limitado para reducir el abuso.
+
+Para explicar o presentar las tablas y sus relaciones en clase, consulta el [modelo entidad-relación de CODIGEASS](./MODELO_DATOS.md).
 
 ## Qué puedes hacer en la aplicación
 
-- Resolver cinco lecciones de Python; se desbloquean en orden.
+- Explorar el catálogo público de los seis cursos: Python, HTML, CSS, JavaScript, Java y C#. Para iniciar lecciones y guardar el progreso debes iniciar sesión o crear una cuenta. Cada curso puede iniciarse sin completar otro.
+- Elegir las lecciones de un curso en cualquier orden; cada curso guarda sus avances de forma independiente en la misma cuenta.
 - Resolver tres desafíos de programación.
 - Ganar XP; la misión diaria da XP adicional al completar dos actividades en el día.
 - Perder una vida cuando una respuesta es incorrecta. Se recupera una vida cada 30 minutos mientras el servidor está funcionando o cuando consultas el progreso después de que pase ese tiempo.
@@ -109,7 +115,7 @@ Las contraseñas deben tener al menos 10 caracteres. El proyecto no pide un corr
 - Cerrar sesión desde el menú lateral.
 - Consultar estadísticas y logros en Perfil.
 
-La página de Rutas muestra Python como disponible y las otras cinco rutas como próximas: todavía no tienen lecciones propias. La tabla de Ligas también es una demostración: no compara las cuentas entre sí ni se actualiza como clasificación compartida.
+El catálogo se llama Cursos. Cada curso tiene ejercicios introductorios para practicar sus conceptos básicos; el contenido no pretende ser un curso completo ni un compilador de código. La página antigua `rutas.html` redirige a `cursos.html`. La tabla de Ligas también es una demostración: no compara las cuentas entre sí ni se actualiza como clasificación compartida.
 
 ## Comandos útiles
 

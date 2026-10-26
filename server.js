@@ -11,6 +11,7 @@ const helmet = require("helmet");
 const {
     createInitialProgress,
     getPublicContent,
+    migrateProgress,
     processAnswer,
     processPurchase,
     refreshProgress
@@ -138,9 +139,9 @@ function createApp({ database, sessionSecret, publicDirectory = path.join(__dirn
         if (!row) {
             throw new Error("The authenticated user's progress record is missing.");
         }
-        const storedProgress = JSON.parse(row.state_json);
-        const refreshed = refreshProgress(storedProgress);
-        if (refreshed.changed) {
+        const migrated = migrateProgress(JSON.parse(row.state_json));
+        const refreshed = refreshProgress(migrated.progress);
+        if (migrated.changed || refreshed.changed) {
             saveProgress(userId, refreshed.progress);
         }
         return refreshed.progress;
@@ -226,6 +227,10 @@ function createApp({ database, sessionSecret, publicDirectory = path.join(__dirn
         response.json({ status: "ok" });
     });
 
+    app.get("/api/content", (request, response) => {
+        response.json({ content: getPublicContent() });
+    });
+
     app.get("/api/auth/session", (request, response) => {
         const user = request.session?.userId
             ? readUser.get(request.session.userId)
@@ -237,7 +242,7 @@ function createApp({ database, sessionSecret, publicDirectory = path.join(__dirn
         response.json({ authenticated: false });
     });
 
-    const authenticationLimiter = rateLimit({
+    const loginLimiter = rateLimit({
         windowMs: 15 * 60 * 1000,
         limit: 10,
         standardHeaders: "draft-8",
@@ -245,13 +250,23 @@ function createApp({ database, sessionSecret, publicDirectory = path.join(__dirn
         message: { error: "Demasiados intentos. Espera 15 minutos y vuelve a intentarlo." }
     });
 
-    app.post("/api/auth/register", authenticationLimiter, async (request, response) => {
+    const registrationLimiter = process.env.NODE_ENV === "production"
+        ? rateLimit({
+            windowMs: 15 * 60 * 1000,
+            limit: 10,
+            standardHeaders: "draft-8",
+            legacyHeaders: false,
+            message: { error: "Se hicieron demasiados registros. Inténtalo de nuevo en 15 minutos." }
+        })
+        : (request, response, next) => next();
+
+    app.post("/api/auth/register", registrationLimiter, async (request, response) => {
         const username = typeof request.body?.username === "string" ? request.body.username.trim() : "";
         const password = typeof request.body?.password === "string" ? request.body.password : "";
         const passwordBytes = Buffer.byteLength(password, "utf8");
 
-        if (!/^[A-Za-z0-9_-]{3,24}$/.test(username)) {
-            response.status(400).json({ error: "El nombre debe tener entre 3 y 24 caracteres: letras, números, guion o guion bajo." });
+        if (!/^[-A-Za-z0-9_.@]{3,64}$/.test(username)) {
+            response.status(400).json({ error: "El nombre debe tener entre 3 y 64 caracteres: letras, números, punto, guion, guion bajo o @. No incluyas espacios." });
             return;
         }
         if (passwordBytes < 10 || passwordBytes > 72) {
@@ -296,10 +311,10 @@ function createApp({ database, sessionSecret, publicDirectory = path.join(__dirn
         });
     });
 
-    app.post("/api/auth/login", authenticationLimiter, async (request, response) => {
+    app.post("/api/auth/login", loginLimiter, async (request, response) => {
         const username = typeof request.body?.username === "string" ? request.body.username.trim() : "";
         const password = typeof request.body?.password === "string" ? request.body.password : "";
-        if (!/^[A-Za-z0-9_-]{3,24}$/.test(username) || Buffer.byteLength(password, "utf8") > 72) {
+        if (!/^[-A-Za-z0-9_.@]{3,64}$/.test(username) || Buffer.byteLength(password, "utf8") > 72) {
             await bcrypt.compare("", dummyPasswordHash);
             response.status(401).json({ error: "Usuario o contraseña incorrectos." });
             return;
@@ -349,13 +364,13 @@ function createApp({ database, sessionSecret, publicDirectory = path.join(__dirn
     });
 
     app.post("/api/activity/answer", requireUser, (request, response) => {
-        const { type, id, answer } = request.body ?? {};
+        const { type, id, courseId, answer } = request.body ?? {};
         if (typeof answer !== "string" || answer.length > 120) {
             response.status(400).json({ error: "Escribe una respuesta de hasta 120 caracteres." });
             return;
         }
         const progress = readProgress(request.user.id);
-        const result = processAnswer(progress, { type, id, answer });
+        const result = processAnswer(progress, { type, id, courseId, answer });
         if (JSON.stringify(result.progress) !== JSON.stringify(progress)) {
             saveProgress(request.user.id, result.progress);
         }

@@ -3,6 +3,7 @@
     let state;
     let user;
     let content;
+    let selectedCourse;
     let activeDialog;
     let messageTimer;
 
@@ -30,7 +31,7 @@
         });
         const result = await response.json();
         if (response.status === 401) {
-            const page = window.location.pathname.split("/").pop();
+            const page = `${window.location.pathname.split("/").pop()}${window.location.search}`;
             window.location.assign(`/login.html?next=${encodeURIComponent(page)}`);
             throw new Error(result.error || "Inicia sesión para continuar.");
         }
@@ -88,26 +89,121 @@
             element.textContent = state.inventory.ninja ? "🥷" : "⚡";
         });
 
+        renderCourseCatalog();
+        renderSelectedCourse();
         renderLessons();
         renderChallenges();
         renderShop();
         renderAchievements();
     }
 
+    function renderCourseCatalog() {
+        const grid = document.querySelector("[data-courses-grid]");
+        if (!grid) {
+            return;
+        }
+        const statistics = document.querySelector(".estadisticas-usuario");
+        if (statistics) {
+            statistics.hidden = !user;
+        }
+        const logoutButton = document.querySelector("[data-logout]");
+        if (logoutButton) {
+            logoutButton.hidden = !user;
+        }
+        grid.replaceChildren();
+        content.courses.forEach(course => {
+            const card = document.createElement("article");
+            card.className = "tarjeta-curso ruta-disponible";
+
+            const header = document.createElement("div");
+            header.className = "contenido-frontal";
+            const icon = document.createElement("span");
+            icon.className = "icono-lenguaje";
+            icon.setAttribute("aria-hidden", "true");
+            icon.textContent = course.icon;
+            const titleContainer = document.createElement("div");
+            titleContainer.className = "titulo-y-estado";
+            const title = document.createElement("h3");
+            title.className = "titulo-curso";
+            title.textContent = course.name;
+            const status = document.createElement("span");
+            status.className = "estado-ruta";
+            const completedCount = course.lessons.filter(lesson =>
+                (state?.completedLessons ?? []).includes(`${course.id}:${lesson.id}`)
+            ).length;
+            status.textContent = `${completedCount}/${course.lessons.length} lecciones · Disponible`;
+            titleContainer.append(title, status);
+            header.append(icon, titleContainer);
+
+            const description = document.createElement("p");
+            description.className = "descripcion-ruta";
+            description.textContent = course.description;
+
+            const link = document.createElement("a");
+            link.className = "btn-iniciar";
+            const coursePage = `/index.html?curso=${encodeURIComponent(course.id)}`;
+            link.href = user
+                ? coursePage
+                : `/login.html?next=${encodeURIComponent(coursePage)}`;
+            link.textContent = user
+                ? `Empezar curso ${course.name} →`
+                : `Inicia sesión para empezar ${course.name} →`;
+
+            card.append(header, description, link);
+            grid.append(card);
+        });
+    }
+
+    function renderSelectedCourse() {
+        const lessonContainer = document.querySelector("[data-course-lessons]");
+        if (!lessonContainer) {
+            return;
+        }
+        const requestedId = new URLSearchParams(window.location.search).get("curso") || "python";
+        selectedCourse = content.courses.find(course => course.id === requestedId)
+            || content.courses.find(course => course.id === "python");
+        if (!selectedCourse) {
+            showMessage("No se encontró el curso solicitado.", true);
+            return;
+        }
+
+        document.title = `Codigeass - Curso de ${selectedCourse.name}`;
+        document.querySelectorAll("[data-course-title]").forEach(element => {
+            element.textContent = `Curso de ${selectedCourse.name}`;
+        });
+        document.querySelectorAll("[data-course-heading]").forEach(element => {
+            element.textContent = `CURSO DE ${selectedCourse.name.toLocaleUpperCase("es")}`;
+        });
+        document.querySelectorAll("[data-course-description]").forEach(element => {
+            element.textContent = "Elige cualquier lección en el orden que prefieras. Cada respuesta incorrecta consume una vida.";
+        });
+        lessonContainer.replaceChildren();
+        selectedCourse.lessons.forEach((lesson, index) => {
+            const item = document.createElement("div");
+            item.className = "contenedor-nodo";
+            const button = document.createElement("button");
+            button.className = "nodo pendiente";
+            button.type = "button";
+            button.dataset.lessonId = lesson.id;
+            button.dataset.courseId = selectedCourse.id;
+            button.setAttribute("aria-label", `Lección ${index + 1}: ${lesson.title}`);
+            const label = document.createElement("p");
+            label.className = "etiqueta-nodo";
+            label.textContent = `${index + 1}. ${lesson.title}`;
+            item.append(button, label);
+            lessonContainer.append(item);
+        });
+    }
+
     function renderLessons() {
-        const firstIncomplete = content.lessons.find(lesson => !state.completedLessons.includes(lesson.id));
         document.querySelectorAll("[data-lesson-id]").forEach(button => {
-            const completed = state.completedLessons.includes(button.dataset.lessonId);
-            const locked = !completed && firstIncomplete?.id !== button.dataset.lessonId;
-            button.disabled = completed || locked;
+            const completionId = `${button.dataset.courseId}:${button.dataset.lessonId}`;
+            const completed = state.completedLessons.includes(completionId);
+            button.disabled = completed;
             button.classList.toggle("completado", completed);
-            button.classList.toggle("bloqueado", locked);
-            button.textContent = completed ? "✓" : locked ? "🔒" : "▶";
-            button.title = completed
-                ? "Lección completada"
-                : locked
-                    ? "Completa la lección anterior para desbloquearla"
-                    : "Abrir lección";
+            button.classList.remove("bloqueado");
+            button.textContent = completed ? "✓" : "▶";
+            button.title = completed ? "Lección completada" : "Abrir lección";
         });
     }
 
@@ -151,7 +247,9 @@
         const unlocked = {
             "first-lesson": state.completedLessons.length > 0,
             streak: state.streak >= 7,
-            python: state.completedLessons.length === content.lessons.length
+            python: content.courses
+                .find(course => course.id === "python")
+                ?.lessons.every(lesson => state.completedLessons.includes(`python:${lesson.id}`)) === true
         };
         Object.entries(unlocked).forEach(([id, achieved]) => {
             const card = document.querySelector(`[data-achievement="${id}"]`);
@@ -160,7 +258,7 @@
         });
     }
 
-    function openExercise(activity, type) {
+    function openExercise(activity, type, courseName) {
         if (state.hearts === 0) {
             showMessage("No tienes vidas disponibles. Espera a recuperar una o consigue más en la tienda.", true);
             return;
@@ -184,7 +282,7 @@
                 </div>
             </form>`;
         dialog.querySelector(".subtitulo-dialogo").textContent = type === "lesson"
-            ? "LECCIÓN DE PYTHON"
+            ? `LECCIÓN DE ${courseName.toLocaleUpperCase("es")}`
             : "DESAFÍO DE PROGRAMACIÓN";
         dialog.querySelector("#titulo-ejercicio").textContent = activity.title;
         dialog.querySelector(".explicacion-ejercicio").textContent = activity.explanation;
@@ -219,6 +317,7 @@
                     body: JSON.stringify({
                         type,
                         id: activity.id,
+                        courseId: type === "lesson" ? selectedCourse?.id : undefined,
                         answer: input.value
                     })
                 });
@@ -264,9 +363,10 @@
     document.addEventListener("click", async event => {
         const lessonButton = event.target.closest("[data-lesson-id]");
         if (lessonButton && !lessonButton.disabled) {
-            const lesson = content.lessons.find(item => item.id === lessonButton.dataset.lessonId);
+            const course = content.courses.find(item => item.id === lessonButton.dataset.courseId);
+            const lesson = course?.lessons.find(item => item.id === lessonButton.dataset.lessonId);
             if (lesson) {
-                openExercise(lesson, "lesson");
+                openExercise(lesson, "lesson", course.name);
             }
             return;
         }
@@ -315,7 +415,19 @@
     });
 
     async function initialize() {
+        const isCourseCatalog = Boolean(document.querySelector("[data-courses-grid]"));
         try {
+            if (isCourseCatalog) {
+                const session = await requestJson("/api/auth/session");
+                if (!session.authenticated) {
+                    const publicResult = await requestJson("/api/content");
+                    content = publicResult.content;
+                    renderCourseCatalog();
+                    showMessage("Puedes explorar los cursos. Inicia sesión o crea una cuenta para empezar y guardar tu progreso.");
+                    return;
+                }
+            }
+
             const result = await requestJson("/api/auth/me");
             user = result.user;
             state = result.progress;

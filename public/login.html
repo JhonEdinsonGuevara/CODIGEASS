@@ -23,7 +23,7 @@
 
             <form class="formulario-login" id="formulario-ingresar" data-auth-form="login" role="tabpanel" aria-labelledby="pestana-ingresar">
                 <label for="usuario-ingresar">Nombre de usuario</label>
-                <input id="usuario-ingresar" name="username" type="text" minlength="3" maxlength="24" pattern="[A-Za-z0-9_\-]{3,24}" autocomplete="username" required>
+                <input id="usuario-ingresar" name="username" type="text" minlength="3" maxlength="64" pattern="[-A-Za-z0-9_.@]{3,64}" autocomplete="username" required>
                 <label for="contrasena-ingresar">Contraseña</label>
                 <input id="contrasena-ingresar" name="password" type="password" minlength="10" maxlength="72" autocomplete="current-password" required>
                 <button class="btn-iniciar btn-acceso" type="submit">Entrar</button>
@@ -31,8 +31,8 @@
 
             <form class="formulario-login" id="formulario-crear" data-auth-form="register" role="tabpanel" aria-labelledby="pestana-crear" hidden>
                 <label for="usuario-crear">Nombre de usuario</label>
-                <input id="usuario-crear" name="username" type="text" minlength="3" maxlength="24" pattern="[A-Za-z0-9_\-]{3,24}" autocomplete="username" aria-describedby="ayuda-usuario" required>
-                <small id="ayuda-usuario">Usa de 3 a 24 letras, números, guiones o guiones bajos.</small>
+                <input id="usuario-crear" name="username" type="text" minlength="3" maxlength="64" pattern="[-A-Za-z0-9_.@]{3,64}" autocomplete="username" aria-describedby="ayuda-usuario" required>
+                <small id="ayuda-usuario">Usa de 3 a 64 letras, números, puntos, guiones bajos, guiones o @. No incluyas espacios.</small>
                 <label for="contrasena-crear">Contraseña</label>
                 <input id="contrasena-crear" name="password" type="password" minlength="10" maxlength="72" autocomplete="new-password" aria-describedby="ayuda-contrasena" required>
                 <small id="ayuda-contrasena">Debe tener al menos 10 caracteres. No se puede recuperar si la olvidas.</small>
